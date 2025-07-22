@@ -3,13 +3,12 @@ package br.com.alura.challenge.forumhub.domain.topico;
 import br.com.alura.challenge.forumhub.domain.curso.Curso;
 import br.com.alura.challenge.forumhub.domain.usuario.Usuario;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "topicos")
 @Entity(name = "Topico")
@@ -25,24 +24,28 @@ public class Topico {
 
     private String titulo;
     private String mensagem;
-    private LocalDate dataCriacao;
+
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
+
+    @Enumerated(EnumType.STRING) //
     private StatusTopico status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "autor_id")
     private Usuario autor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curso_id")
     private Curso curso;
-    private String respostas;
 
-    public Topico(@Valid DadosCadastroTopico dados) {
-        this.titulo = dados.titulo();
-        this.mensagem = dados.mensagem();
-        this.dataCriacao = LocalDate.now();
+
+    public Topico(String titulo, String mensagem, Usuario autor, Curso curso) {
+        this.titulo = titulo;
+        this.mensagem = mensagem;
+        this.autor = autor;
+        this.curso = curso;
+        this.dataCriacao = LocalDateTime.now();
         this.status = StatusTopico.NAO_RESOLVIDO;
-        this.autor = new Usuario(dados.autor());
-        this.curso = new Curso(dados.curso());
     }
 }

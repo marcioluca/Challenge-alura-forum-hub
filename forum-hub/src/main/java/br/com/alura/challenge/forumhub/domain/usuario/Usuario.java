@@ -37,6 +37,5 @@ public class Usuario {
     public Usuario(DadosUsuario dados) {
         this.nome = dados.nome();
         this.email = dados.email();
-        this.senha = dados.senha();
     }
 }

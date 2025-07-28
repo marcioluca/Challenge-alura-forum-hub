@@ -3,10 +3,7 @@ package br.com.alura.challenge.forumhub.domain.topico;
 import br.com.alura.challenge.forumhub.domain.curso.Curso;
 import br.com.alura.challenge.forumhub.domain.usuario.Usuario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -48,4 +45,14 @@ public class Topico {
         this.dataCriacao = LocalDateTime.now();
         this.status = StatusTopico.NAO_RESOLVIDO;
     }
+
+    public void atualizarInformacoes(AtualizacaoDadosTopico dados) {
+        if (dados.titulo() != null && !dados.titulo().isBlank()) {
+            this.titulo = dados.titulo();
+        }
+        if (dados.mensagem() != null && !dados.mensagem().isBlank()) {
+            this.mensagem = dados.mensagem();
+        }
+    }
+
 }

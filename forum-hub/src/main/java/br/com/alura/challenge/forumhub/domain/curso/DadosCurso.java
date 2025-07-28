@@ -6,4 +6,7 @@ public record DadosCurso(
                          @NotBlank
                          String nome,
                          String categoria) {
+    public DadosCurso(Curso curso) {
+        this(curso.getNome(), curso.getCategoria());
+    }
 }

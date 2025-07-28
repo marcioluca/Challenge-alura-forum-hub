@@ -1,7 +1,6 @@
 package br.com.alura.challenge.forumhub.domain.topico;
-
-import br.com.alura.challenge.forumhub.domain.curso.Curso;
-import br.com.alura.challenge.forumhub.domain.usuario.Usuario;
+import br.com.alura.challenge.forumhub.domain.curso.DadosCurso;
+import br.com.alura.challenge.forumhub.domain.usuario.DadosUsuario;
 import java.time.LocalDateTime;
 
 public record DetalhamentoDadosTopico(
@@ -10,10 +9,18 @@ public record DetalhamentoDadosTopico(
         String mensagem,
         LocalDateTime dataCriacao,
         StatusTopico status,
-        Usuario autor,
-        Curso curos
+        DadosUsuario autor,
+        DadosCurso curso
 ) {
     public DetalhamentoDadosTopico(Topico topico) {
-        this(topico.getId(), topico.getTitulo(), topico.getMensagem(), topico.getDataCriacao(), topico.getStatus(), topico.getAutor(), topico.getCurso());
+        this(
+                topico.getId(),
+                topico.getTitulo(),
+                topico.getMensagem(),
+                topico.getDataCriacao(),
+                topico.getStatus(),
+                new DadosUsuario(topico.getAutor()),
+                new DadosCurso(topico.getCurso())
+        );
     }
 }

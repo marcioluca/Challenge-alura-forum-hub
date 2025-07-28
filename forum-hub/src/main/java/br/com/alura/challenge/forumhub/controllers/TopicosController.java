@@ -1,5 +1,6 @@
 package br.com.alura.challenge.forumhub.controllers;
 
+import br.com.alura.challenge.forumhub.domain.topico.AtualizacaoDadosTopico;
 import br.com.alura.challenge.forumhub.domain.topico.CadastroDadosTopico;
 import br.com.alura.challenge.forumhub.domain.topico.DetalhamentoDadosTopico;
 import br.com.alura.challenge.forumhub.domain.topico.ListagemDadosTopico;
@@ -36,5 +37,22 @@ public class TopicosController {
         var page = topicoService.listar(paginacao);
         return ResponseEntity.ok(page);
 
+    }
+    @PutMapping
+    public ResponseEntity<DetalhamentoDadosTopico> atualizar(@RequestBody @Valid AtualizacaoDadosTopico dados) {
+        var topicoAtualizado = topicoService.atualizar(dados);
+        return ResponseEntity.ok(topicoAtualizado);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id) {
+        var topico = topicoService.detalhar(id);
+        return ResponseEntity.ok(topico);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluir(@PathVariable Long id) {
+        topicoService.excluir(id);
+        return ResponseEntity.noContent().build();
     }
 }

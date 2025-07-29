@@ -41,7 +41,7 @@ public class TopicoService {
     }
 
     public Page<ListagemDadosTopico> listar(Pageable paginacao) {
-        return topicoRepository.findAll(paginacao)
+        return topicoRepository.findAllByAtivoTrue(paginacao)
                 .map(DetalhamentoDadosTopico::new)
                 .map(ListagemDadosTopico::new);
     }
@@ -66,7 +66,8 @@ public class TopicoService {
 
     @Transactional
     public void excluir(Long id) {
-        topicoRepository.deleteById(id);
+        var topico = topicoRepository.getReferenceById(id);
+        topico.Inativar();
     }
 
 

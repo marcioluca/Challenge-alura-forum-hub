@@ -36,6 +36,7 @@ public class Topico {
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
+    private Boolean ativo;
 
     public Topico(String titulo, String mensagem, Usuario autor, Curso curso) {
         this.titulo = titulo;
@@ -53,6 +54,9 @@ public class Topico {
         if (dados.mensagem() != null && !dados.mensagem().isBlank()) {
             this.mensagem = dados.mensagem();
         }
+    }
+    public void Inativar(){
+        this.ativo = false;
     }
 
 }

@@ -1,23 +1,25 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# ===================================================================
+# Arquivos e pastas de IDEs
+# Mantenha as seções que você e seu time usam.
+# ===================================================================
 
-### STS ###
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.ipr
+*.iws
+
+### VS Code ###
+.vscode/
+
+### Spring Tool Suite (STS) / Eclipse ###
+.settings/
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
 .springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+.sts4-cache/
 
 ### NetBeans ###
 /nbproject/private/
@@ -25,21 +27,26 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
 
-# Arquivos de build do Maven/Gradle
+# ===================================================================
+# Arquivos e pastas de Build (Maven/Gradle)
+# ===================================================================
 /target/
 /build/
+/out/
+
+
+# ===================================================================
+# Diversos
+# ===================================================================
+
+# Logs
+*.log
 
 # Arquivos de sistema operacional
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
-
+# Arquivos temporários
+*~

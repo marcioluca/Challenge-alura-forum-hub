@@ -1,7 +1,6 @@
 package br.com.alura.challenge.forumhub.domain.curso;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,5 +20,10 @@ public class Curso {
     private String nome;
     private String categoria;
 
+
+    public Curso(String nome, String categoria) {
+        this.nome = nome;
+        this.categoria = categoria;
+    }
 }
 

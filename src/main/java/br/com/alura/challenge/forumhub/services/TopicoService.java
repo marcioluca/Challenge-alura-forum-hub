@@ -4,7 +4,7 @@ import br.com.alura.challenge.forumhub.domain.curso.Curso;
 import br.com.alura.challenge.forumhub.domain.topico.*;
 import br.com.alura.challenge.forumhub.domain.usuario.Usuario;
 import br.com.alura.challenge.forumhub.repositories.CursoRepository;
-import br.com.alura.challenge.forumhub.repositories.TopicosRepository;
+import br.com.alura.challenge.forumhub.repositories.TopicoRepository;
 import br.com.alura.challenge.forumhub.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -16,11 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TopicoService {
 
-    private final TopicosRepository topicoRepository;
+    private final TopicoRepository topicoRepository;
     private final UsuarioRepository usuarioRepository;
     private final CursoRepository cursoRepository;
 
-    public TopicoService(TopicosRepository topicoRepository, UsuarioRepository usuarioRepository, CursoRepository cursoRepository) {
+    public TopicoService(TopicoRepository topicoRepository, UsuarioRepository usuarioRepository, CursoRepository cursoRepository) {
         this.topicoRepository = topicoRepository;
         this.usuarioRepository = usuarioRepository;
         this.cursoRepository = cursoRepository;
@@ -67,6 +67,9 @@ public class TopicoService {
     @Transactional
     public void excluir(Long id) {
         var topico = topicoRepository.getReferenceById(id);
+        if(topico.getAtivo() == Boolean.FALSE) {
+            throw new IllegalStateException("Tópico já está inativo.");
+        }
         topico.Inativar();
     }
 

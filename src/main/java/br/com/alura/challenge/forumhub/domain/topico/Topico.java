@@ -45,6 +45,7 @@ public class Topico {
         this.curso = curso;
         this.dataCriacao = LocalDateTime.now();
         this.status = StatusTopico.NAO_RESOLVIDO;
+        this.ativo = true;
     }
 
     public void atualizarInformacoes(AtualizacaoDadosTopico dados) {

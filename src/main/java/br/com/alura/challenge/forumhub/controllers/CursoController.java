@@ -3,8 +3,6 @@ package br.com.alura.challenge.forumhub.controllers;
 import br.com.alura.challenge.forumhub.domain.curso.CadastroDadosCurso;
 import br.com.alura.challenge.forumhub.domain.curso.DadosCurso;
 import br.com.alura.challenge.forumhub.domain.curso.ListagemDadosCurso;
-import br.com.alura.challenge.forumhub.domain.topico.DetalhamentoDadosTopico;
-import br.com.alura.challenge.forumhub.domain.topico.ListagemDadosTopico;
 import br.com.alura.challenge.forumhub.services.CursoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

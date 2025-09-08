@@ -1,8 +1,8 @@
 package br.com.alura.challenge.forumhub.controllers;
 
-import br.com.alura.challenge.forumhub.domain.curso.CadastroDadosCurso;
-import br.com.alura.challenge.forumhub.domain.curso.DadosCurso;
-import br.com.alura.challenge.forumhub.domain.curso.ListagemDadosCurso;
+import br.com.alura.challenge.forumhub.domain.curso.*;
+import br.com.alura.challenge.forumhub.domain.topico.AtualizacaoDadosTopico;
+import br.com.alura.challenge.forumhub.domain.topico.DetalhamentoDadosTopico;
 import br.com.alura.challenge.forumhub.services.CursoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +37,11 @@ public class CursoController {
         var page = cursoService.listar(paginacao);
         return ResponseEntity.ok(page);
 
+    }
+    @PutMapping
+    public ResponseEntity<DadosDetalhamentoCurso> atualizar(@RequestBody @Valid DadosAtualizacaoCurso dados) {
+        var topicoAtualizado = cursoService.atualizar(dados);
+        return ResponseEntity.ok(topicoAtualizado);
     }
 }
 

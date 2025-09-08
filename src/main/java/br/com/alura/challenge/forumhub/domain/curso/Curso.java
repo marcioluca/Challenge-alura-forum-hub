@@ -20,10 +20,17 @@ public class Curso {
     private String nome;
     private String categoria;
 
-
     public Curso(String nome, String categoria) {
         this.nome = nome;
         this.categoria = categoria;
+    }
+    public void atualizarInformacoes(DadosAtualizacaoCurso dados) {
+        if (dados.nome() != null && !dados.nome().isBlank()) {
+            this.nome = dados.nome();
+        }
+        if (dados.categoria() != null && !dados.categoria().isBlank()) {
+            this.categoria = dados.categoria();
+        }
     }
 }
 

@@ -19,11 +19,19 @@ public class Curso {
     private Long id;
     private String nome;
     private String categoria;
+    private Boolean ativo;
 
     public Curso(String nome, String categoria) {
         this.nome = nome;
         this.categoria = categoria;
+        this.ativo = Boolean.TRUE;
     }
+
+    public void Inativar() {
+        this.ativo = Boolean.FALSE;
+    }
+
+
     public void atualizarInformacoes(DadosAtualizacaoCurso dados) {
         if (dados.nome() != null && !dados.nome().isBlank()) {
             this.nome = dados.nome();

@@ -16,6 +16,15 @@ public class CursoService {
     private CursoRepository cursoRepository;
 
     @Transactional
+    public void excluir(Long id) {
+        var curso = cursoRepository.getReferenceById(id);
+        if(curso.getAtivo() == Boolean.FALSE) {
+            throw new IllegalStateException("Curso não já está inativo.");
+        }
+        curso.Inativar();
+    }
+
+    @Transactional
     public DadosCurso cadastrar(CadastroDadosCurso dados) {
         Curso curso = new Curso(dados.nome(), dados.categoria());
         cursoRepository.save(curso);
@@ -23,9 +32,8 @@ public class CursoService {
     }
 
     public Page<ListagemDadosCurso> listar(Pageable paginacao) {
-        Page<Curso> paginaDeCursos = cursoRepository.findAll(paginacao);
+        Page<Curso> paginaDeCursos = cursoRepository.findAllByAtivoTrue(paginacao);
         return paginaDeCursos.map(ListagemDadosCurso::new);
-
     }
 
     @Transactional
